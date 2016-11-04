@@ -1,3 +1,4 @@
+# Base code from https://github.com/aksonov/react-native-xmpp
 # react-native-xmpp
 XMPP library for React Native
 
