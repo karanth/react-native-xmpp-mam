@@ -1,0 +1,80 @@
+{
+  "_args": [
+    [
+      "react-native-xmpp@^0.3.0",
+      "/Users/sandeepkaranth/hadoop/git-leaderamp-vnext/leaderamp-vnext-mobile/LeaderAmp"
+    ]
+  ],
+  "_from": "react-native-xmpp@>=0.3.0 <0.4.0",
+  "_id": "react-native-xmpp@0.3.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-native-xmpp",
+  "_nodeVersion": "5.5.0",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/react-native-xmpp-0.3.0.tgz_1472461123831_0.27610231284052134"
+  },
+  "_npmUser": {
+    "email": "pavlo.aksonov@gmail.com",
+    "name": "aksonov"
+  },
+  "_npmVersion": "3.5.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "react-native-xmpp",
+    "raw": "react-native-xmpp@^0.3.0",
+    "rawSpec": "^0.3.0",
+    "scope": null,
+    "spec": ">=0.3.0 <0.4.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-native-xmpp/-/react-native-xmpp-0.3.0.tgz",
+  "_shasum": "dcf35df080638ddd26d18429d89cd908c55c8038",
+  "_shrinkwrap": null,
+  "_spec": "react-native-xmpp@^0.3.0",
+  "_where": "/Users/sandeepkaranth/hadoop/git-leaderamp-vnext/leaderamp-vnext-mobile/LeaderAmp",
+  "author": {
+    "name": "Pavlo Aksonov"
+  },
+  "bugs": {
+    "url": "https://github.com/aksonov/react-native-xmpp/issues"
+  },
+  "dependencies": {},
+  "description": "XMPP Library for React Native",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "dcf35df080638ddd26d18429d89cd908c55c8038",
+    "tarball": "https://registry.npmjs.org/react-native-xmpp/-/react-native-xmpp-0.3.0.tgz"
+  },
+  "gitHead": "90d97bb04536db9341c85e77c1dfb972e450e424",
+  "homepage": "https://github.com/aksonov/react-native-xmpp#readme",
+  "keywords": [
+    "react-native",
+    "xmpp",
+    "xmppframework"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "aksonov",
+      "email": "pavlo.aksonov@gmail.com"
+    }
+  ],
+  "name": "react-native-xmpp",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aksonov/react-native-xmpp.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.3.0"
+}
