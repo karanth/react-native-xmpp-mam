@@ -237,13 +237,13 @@ public class XmppServiceSmackImpl implements XmppService, ChatManagerListener, S
 
         MamElements.MamResultExtension result = (MamElements.MamResultExtension)packet.getExtension(MamElements.NAMESPACE);
         if(result != null){
-            System.out.println("resultrrrrrrrrrrrrrrrrr " + result.toXML());
+            this.xmppServiceListener.onForwarded(result);
         }
         else{
-            System.out.println("result not found rrrrrrrrr");
+            //result node not found
         }
 
-        this.xmppServiceListener.onForwarded(result);
+        
     }
 
     @Override
