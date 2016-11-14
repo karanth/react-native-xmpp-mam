@@ -13,11 +13,10 @@ import org.jivesoftware.smack.chat.ChatManager;
 import org.jivesoftware.smack.chat.ChatManagerListener;
 import org.jivesoftware.smack.chat.ChatMessageListener;
 import org.jivesoftware.smack.filter.StanzaTypeFilter;
-import org.jivesoftware.smack.packet.ExtensionElement;
+import org.jivesoftware.smack.packet.IQ;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.packet.Stanza;
-import org.jivesoftware.smack.provider.ExtensionElementProvider;
 import org.jivesoftware.smack.provider.ProviderManager;
 import org.jivesoftware.smack.roster.Roster;
 import org.jivesoftware.smack.roster.RosterEntry;
@@ -60,6 +59,9 @@ public class XmppServiceSmackImpl implements XmppService, ChatManagerListener, S
     List<String> trustedHosts = new ArrayList<>();
     String password;
 
+
+
+
     static{
         ProviderManager.addExtensionProvider("delay", DelayInformation.NAMESPACE, new DelayInformationProvider());
         ProviderManager.addExtensionProvider("forward", Forwarded.NAMESPACE, new ForwardedProvider());
@@ -89,7 +91,7 @@ public class XmppServiceSmackImpl implements XmppService, ChatManagerListener, S
                 .setServiceName(serviceName)
                 .setUsernameAndPassword(jidParts[0], password)
                 .setConnectTimeout(3000)
-              //  .setDebuggerEnabled(true)
+                //.setDebuggerEnabled(true)
                 .setSecurityMode(ConnectionConfiguration.SecurityMode.disabled);
 
         if (serviceNameParts.length>1){
@@ -112,6 +114,31 @@ public class XmppServiceSmackImpl implements XmppService, ChatManagerListener, S
         connection = new XMPPTCPConnection(connectionConfiguration);
         connection.addConnectionListener(this);
         connection.addAsyncStanzaListener(this, StanzaTypeFilter.MESSAGE);
+
+
+
+        connection.addAsyncStanzaListener(new StanzaListener() {
+            @Override
+            public void processPacket(Stanza packet) throws SmackException.NotConnectedException {
+                Presence presence = (Presence)packet;
+
+                if(presence != null)
+                    xmppServiceListener.onPresence(presence);
+
+            }
+        }, StanzaTypeFilter.PRESENCE);
+
+
+        connection.addAsyncStanzaListener(new StanzaListener() {
+            @Override
+            public void processPacket(Stanza p) throws SmackException.NotConnectedException {
+                IQ packet = (IQ)p;
+                if(packet != null){
+                    xmppServiceListener.onIQ(packet);
+                }
+            }
+        }, StanzaTypeFilter.IQ);
+
 
         ChatManager.getInstanceFor(connection).addChatListener(this);
         roster = Roster.getInstanceFor(connection);
@@ -235,15 +262,18 @@ public class XmppServiceSmackImpl implements XmppService, ChatManagerListener, S
 
         Message packet = (Message)p;
 
-        MamElements.MamResultExtension result = (MamElements.MamResultExtension)packet.getExtension(MamElements.NAMESPACE);
+        MamElements.MamResultExtension result = (MamElements.MamResultExtension)packet.getExtension("result",MamElements.NAMESPACE);
         if(result != null){
+            System.out.println("resultrrrrrrrrrrrrrrrrr " + result.toXML());
             this.xmppServiceListener.onForwarded(result);
         }
         else{
-            //result node not found
+            //this.xmppServiceListener.onMessage(packet);
+
         }
 
-        
+
+
     }
 
     @Override
