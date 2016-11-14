@@ -1,5 +1,6 @@
 package rnxmpp.mam;
 
+import org.jivesoftware.smack.packet.DefaultExtensionElement;
 import org.jivesoftware.smack.packet.ExtensionElement;
 import org.jivesoftware.smack.packet.Message;
 import org.jivesoftware.smack.util.StringUtils;
@@ -25,7 +26,7 @@ public class MamElements {
      *      Archive Management</a>
      *
      */
-    public static class MamResultExtension implements ExtensionElement {
+    public static class MamResultExtension extends DefaultExtensionElement {
 
         /**
          * result element.
@@ -55,6 +56,7 @@ public class MamElements {
          * @param forwarded
          */
         public MamResultExtension(String queryId, String id, Forwarded forwarded) {
+            super(ELEMENT,NAMESPACE);
             if (StringUtils.isEmpty(id)) {
                 throw new IllegalArgumentException("id must not be null or empty");
             }
