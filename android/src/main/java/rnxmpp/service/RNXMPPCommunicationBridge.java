@@ -102,12 +102,20 @@ public class RNXMPPCommunicationBridge implements XmppServiceListener {
 
     @Override
     public void onIQ(IQ iq) {
-        sendEvent(reactContext, RNXMPP_IQ, Parser.parse(iq.toString()));
+        WritableMap params = Arguments.createMap();
+        params.putString("id", iq.getStanzaId());
+        params.putString("src", iq.toXML().toString());
+        sendEvent(reactContext, RNXMPP_IQ, params);
     }
 
     @Override
     public void onPresence(Presence presence) {
-        sendEvent(reactContext, RNXMPP_PRESENCE, presence.toString());
+        WritableMap params = Arguments.createMap();
+        params.putString("from", presence.getFrom());
+        params.putString("to", presence.getTo());
+        params.putString("type", presence.getType().toString());
+        params.putString("src", presence.toXML().toString());
+        sendEvent(reactContext, RNXMPP_PRESENCE, params);
     }
 
     @Override
