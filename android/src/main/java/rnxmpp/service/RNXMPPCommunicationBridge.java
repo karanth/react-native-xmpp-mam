@@ -65,6 +65,7 @@ public class RNXMPPCommunicationBridge implements XmppServiceListener {
         params.putString("body", message.getBody());
         params.putString("from", message.getFrom());
         params.putString("src", message.toXML().toString());
+        System.out.println("** ** ** Message");
         sendEvent(reactContext, RNXMPP_MESSAGE, params);
     }
 
@@ -78,6 +79,7 @@ public class RNXMPPCommunicationBridge implements XmppServiceListener {
         params.putString("src", forwarded.toXML().toString());
         params.putString("id", result.getId());
         params.putString("forwarded", "true");
+        System.out.println("** ** ** Forwarded");
         sendEvent(reactContext, RNXMPP_MESSAGE, params);
 
     }
